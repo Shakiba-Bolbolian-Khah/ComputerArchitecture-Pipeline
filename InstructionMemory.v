@@ -1,0 +1,74 @@
+`timescale 1ns/1ns
+module InstructionMemory(input[31:0] PC, output[31:0] Instruction);
+  reg[7:0] dataOut1,dataOut2,dataOut3,dataOut4;
+  reg [7:0] memoryData[0:1023];
+  initial begin
+    memoryData[0] = 8'b00000000;  
+    memoryData[1] = 8'b00000000;
+    memoryData[2] = 8'b00001000;
+    memoryData[3] = 8'b00100000;
+    memoryData[4] = 8'b10001100;
+    memoryData[5] = 8'b00100010;
+    memoryData[6] = 8'b00000011;
+    memoryData[7] = 8'b11101000;
+    memoryData[8] = 8'b00000000;
+    memoryData[9] = 8'b01000000;
+    memoryData[10] = 8'b00011000;
+    memoryData[11] = 8'b00100000;
+    memoryData[12] = 8'b10001100;
+    memoryData[13] = 8'b00000100;
+    memoryData[14] = 8'b00000000;
+    memoryData[15] = 8'b00000000;
+    memoryData[16] = 8'b00000000;
+    memoryData[17] = 8'b00100100;
+    memoryData[18] = 8'b00101000;
+    memoryData[19] = 8'b00101010;
+    memoryData[20] = 8'b0;
+    memoryData[21] = 8'b0;
+    memoryData[22] = 8'b0;
+    memoryData[23] = 8'b0;
+    memoryData[24] = 8'b00010000;
+    memoryData[25] = 8'b10100000;
+    memoryData[26] = 8'b00000000;
+    memoryData[27] = 8'b00000111;
+    memoryData[28] = 8'b00000000;
+    memoryData[29] = 8'b00100101;
+    memoryData[30] = 8'b00001000;
+    memoryData[31] = 8'b00100000;
+    memoryData[32] = 8'b10001100;
+    memoryData[33] = 8'b00100010;
+    memoryData[34] = 8'b00000011;
+    memoryData[35] = 8'b11101000;
+    memoryData[36] = 8'b00000000;
+    memoryData[37] = 8'b01100010;
+    memoryData[38] = 8'b00110000;
+    memoryData[39] = 8'b00101010;
+    memoryData[40] = 8'b0;
+    memoryData[41] = 8'b0;
+    memoryData[42] = 8'b0;
+    memoryData[43] = 8'b0;    
+    memoryData[44] = 8'b00010000;
+    memoryData[45] = 8'b11000000;  
+    memoryData[46] = 8'b11111111;
+    memoryData[47] = 8'b11111000;
+    memoryData[48] = 8'b00000000;
+    memoryData[49] = 8'b01000000;
+    memoryData[50] = 8'b00011000;
+    memoryData[51] = 8'b00100000;
+    memoryData[52] = 8'b00001000;
+    memoryData[53] = 8'b00000000;
+    memoryData[54] = 8'b00000000;
+    memoryData[55] = 8'b00000100;
+    memoryData[56] = 8'b10101100;
+    memoryData[57] = 8'b00000011;
+    memoryData[58] = 8'b00000011;
+    memoryData[59] = 8'b11110010;
+  end
+  always@(PC)begin
+    dataOut1 = memoryData[PC[9:0]];
+    dataOut2 = memoryData[PC[9:0]+1];
+    dataOut3 = memoryData[PC[9:0]+2];
+    dataOut4 = memoryData[PC[9:0]+3];
+  end
+  assign Instruction = {dataOut1,dataOut2,dataOut3,dataOut4};
+endmodule
